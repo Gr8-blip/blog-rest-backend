@@ -21,6 +21,9 @@ Only authors can manage their own posts, keeping things safe and properly permis
 ---
 
 ## ⚙️ Getting Started
+First off you could get a quick walkaround of the API here [here](https://blogy-api-53ps.onrender.com/)
+
+OR get it working on your machine 👇👇👇
 
 ### 1. Clone the repository
 ```bash
