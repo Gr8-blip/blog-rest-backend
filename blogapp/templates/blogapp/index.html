@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogy API Docs (Dark Mode)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- Dark Theme Variables (FORCED) --- */
+    :root {
+      --color-primary: #6366f1; /* Indigo-500 */
+      --color-surface: #0f172a; /* Slate-900 (Background) */
+      --color-card: #1e293b; /* Slate-800 (Card/Surface) */
+      --color-border: #334155; /* Slate-700 */
+      --color-code-bg: #334155;
+      --color-code-text: #94a3b8;
+      --color-pre-bg: #020617; /* Slate-950 (Code Block) */
+      --color-pre-text: #86efac; /* Green-300 */
+      --color-text-main: #f1f5f9; /* Slate-100 (White text) */
+      --color-text-secondary: #94a3b8; /* Slate-400 (Dimmer text) */
+    }
+
+    /* --- Base Styles (Forced Dark Mode) --- */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-surface);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      color: var(--color-text-main); /* All text is bright by default */
+      transition: background-color 0.3s;
+    }
+    
+    .card {
+      background-color: var(--color-card);
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+      border: 1px solid var(--color-border); 
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, border-color 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -4px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn {
+      background-color: var(--color-primary);
+      box-shadow: 0 2px 4px color-mix(in srgb, var(--color-primary) 50%, transparent);
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+    
+    .endpoint-item {
+        border-radius: 0.5rem;
+        transition: background-color 0.2s ease;
+        border-left: 4px solid transparent;
+        padding-left: 1rem;
+    }
+    .endpoint-item:hover {
+        background-color: color-mix(in srgb, var(--color-surface) 90%, var(--color-card));
+        border-left-color: var(--color-primary);
+    }
+
+    /* Method Tag Styling (Fixed for dark backgrounds) */
+    .method-tag {
+        font-weight: 700;
+        font-size: 0.8rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 0.25rem;
+        min-width: 60px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .method-tag.post { background-color: #450a0a; color: #fca5a5; }
+    .method-tag.get { background-color: #064e3b; color: #a7f3d0; }
+    .method-tag.put { background-color: #1e3a8a; color: #bfdbfe; }
+    .method-tag.delete { background-color: #450a0a; color: #fecaca; }
+
+
+    /* Code Block Styling */
+    .code-inline {
+        background-color: var(--color-code-bg); 
+        color: var(--color-code-text); 
+        padding: 0.1rem 0.4rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    pre {
+        background-color: var(--color-pre-bg); 
+        color: var(--color-pre-text); 
+        border: 1px solid color-mix(in srgb, var(--color-border) 50%, var(--color-pre-bg));
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="card max-w-4xl w-full p-8 md:p-16 relative">
+    
+    <div class="text-center mb-10">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tighter">
+        Blogy API Docs
+      </h1>
+      <p class="text-xl font-normal text-gray-300 mb-8 max-w-xl mx-auto">
+        The official REST API documentation for **Blogy**. Built for speed and reliability using Django & DRF.
+      </p>
+      <a href="https://www.postman.com/" target="_blank" class="btn inline-block px-8 py-3 text-white font-bold rounded-lg shadow-lg text-lg">
+        Explore in Postman &rarr;
+      </a>
+    </div>
+
+    <hr class="my-10 border-gray-700">
+
+    <div class="endpoints mb-12">
+      <h3 class="text-3xl font-bold text-white mb-6 border-l-4 border-blue-500 pl-4">API Endpoints</h3>
+      <ul class="space-y-4">
+        
+        <li class="endpoint-item p-4 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag get">GET</span>
+            <code class="text-lg font-mono text-white">/blog_list/</code>
+          </div>
+          <span class="text-gray-300">Retrieve a list of all public blog posts</span>
+        </li>
+        
+        <li class="endpoint-item p-4 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag post">POST</span>
+            <code class="text-lg font-mono text-white">/register_user/</code>
+          </div>
+          <span class="text-gray-300">Create a new user account (Public)</span>
+        </li>
+        
+        <li class="endpoint-item p-4 flex items-center justify-between border-l-red-500 hover:border-l-red-400">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag post">POST</span>
+            <code class="text-lg font-mono text-white">/create_blog/</code>
+          </div>
+          <span class="text-red-400 font-semibold">Protected: Create a new post</span>
+        </li>
+        
+        <li class="endpoint-item p-4 flex items-center justify-between border-l-red-500 hover:border-l-red-400">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag put">PUT</span>
+            <code class="text-lg font-mono text-white">/update_blog/&lt;int:pk&gt;/</code>
+          </div>
+          <span class="text-red-400 font-semibold">Protected: Update a specific post</span>
+        </li>
+        
+        <li class="endpoint-item p-4 flex items-center justify-between border-l-red-500 hover:border-l-red-400">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag delete">DELETE</span>
+            <code class="text-lg font-mono text-white">/delete_blog/&lt;int:pk&gt;/</code>
+          </div>
+          <span class="text-red-400 font-semibold">Protected: Delete a specific post</span>
+        </li>
+        
+        <li class="endpoint-item p-4 flex items-center justify-between border-l-red-500 hover:border-l-red-400">
+          <div class="flex items-center space-x-4">
+            <span class="method-tag put">PUT</span>
+            <code class="text-lg font-mono text-white">/update_user/</code>
+          </div>
+          <span class="text-red-400 font-semibold">Protected: Modify user profile</span>
+        </li>
+
+      </ul>
+    </div>
+
+    <hr class="my-10 border-gray-700">
+
+    <div class="jwt-guide">
+      <h3 class="text-3xl font-bold text-white mb-6 border-l-4 border-blue-500 pl-4">JWT Authentication Flow</h3>
+      <p class="text-gray-300 mb-6">
+        Protected endpoints require an access token from the **DRF Simple JWT** system. Follow these steps to authenticate:
+      </p>
+      <ol class="text-left text-gray-300 space-y-4 list-decimal list-inside ml-4">
+        <li>Create an account using the <code class="code-inline">POST /register_user/</code> endpoint.</li>
+        <li>Acquire your tokens by sending a <code class="code-inline">POST</code> request to the token acquisition endpoint: <code class="code-inline">/token/</code> (aliased as <code class="code-inline">token_obtain_pair</code>).</li>
+        <li>For all subsequent protected requests, include the token in your HTTP headers: <code class="code-inline">Authorization: Bearer &lt;your_token&gt;</code>.</li>
+        <li>(Optional) Refresh your token using <code class="code-inline">POST /token_refresh/</code> and your refresh token.</li>
+      </ol>
+      
+      <p class="text-gray-300 mt-8 mb-3 font-semibold">
+        <span class="text-indigo-400">Example</span>: Obtaining a token with curl
+      </p>
+      <pre class="p-4 rounded-lg overflow-x-auto text-sm">
+<span class="text-gray-500"># Use your production domain or local host for the base URL</span>
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username":"your_username","password":"your_password"}' \
+  https://api.blogy.com/token/
+
+<span class="text-gray-500"># Example Local Host:</span>
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"username":"your_username","password":"your_password"}' \
+  http://127.0.0.1:8000/token/
+      </pre>
+    </div>
+
+    <p class="mt-12 text-sm font-light text-gray-500 text-center">
+      Designed with attention to detail by <strong class="text-gray-300">Great (Ravstar)</strong>.
+    </p>
+  </div>
+  
+  </body>
+</html>

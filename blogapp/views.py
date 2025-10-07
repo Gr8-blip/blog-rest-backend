@@ -7,6 +7,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
+def home(request):
+    return render(request, 'blogapp/index.html')
 
 @api_view(['POST'])
 def register_user(request):
